@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <form class="form">
+        <input name="income" type="number" placeholder="Rp.xxx.xxx">
+        <input name="keterangan" type="text" placeholder="keterangan">
+
+        <button type="submit" onclick="navigateToHome()">Simpan</button>
+    </form>
+
+    <script>
+        const formEl = document.querySelector('.form');
+
+        formEl.addEventListener('submit', event => {
+            event.preventDefault();
+
+            const formData = new FormData(formEl);
+            const data = Object.fromEntries(formData);
+            console.log(data);
+
+            fetch('http://127.0.0.1:5000/api/income', {
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            }).then(res => res.json())
+            .then(data => console.log(data))
+            .catch(error => console.log(error));
+        });
+
+        function navigateToHome() {
+            window.location.href = '../index.html';
+        }
+    </script>
+
+</body>
+</html>

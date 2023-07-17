@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- <link rel="stylesheet" href="style.css"> -->
+  <title>Tabungan Mamah</title>
+</head>
+<body>
+  <h1>Saving Money</h1>
+
+  <h2 id="total_income"></h2>
+  <a href="rincian/index.html">Lihat Rincian</a>
+  <br><br>
+  <a href="rincian/add_income.html"><button>Tambah</button></a>
+  <a href="rincian/add_outcome.html"><button>Bayar</button></a>
+</body>
+</html>
+
+<script>
+  fetch('https://savemoney-flask.engkol.cloud/api/getSumIncome')
+  .then(response => response.json())
+  .then(data => {
+      // Process the retrieved data
+      console.log(data);
+      
+      const total_income = document.getElementById('total_income');
+      
+      // Check if data.message exists
+      if (data) {
+      total_income.textContent = data.total;
+      } else {
+      console.log('No data found.');
+      }
+  })
+</script>

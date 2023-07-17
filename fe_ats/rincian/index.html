@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rincian Keuangan</title>
+</head>
+<body>
+    <h1>Rincian Keuangan</h1>
+    <p>Januari</p>
+
+    <button id="showPemasukan">Masuk</button>
+    <button id="showPengeluaran">Keluar</button>
+
+    <div id="listPemasukan">
+        <h2>Pemasukan</h2>
+        <table id="list_pemasukan">
+            <tr>
+                <td>Tanggal</td>
+                <td>Pemasukan</td>
+                <td>Keterangan</td>
+            </tr>
+        </table>
+    </div>
+
+    <div id="listPengeluaran" style="display: none;">
+        <h2>Pengeluaran</h2>
+        <table id="list_pengeluaran">
+            <tr>
+                <td>Tanggal</td>
+                <td>Pengeluaran</td>
+                <td>Keterangan</td>
+            </tr>
+        </table>
+    </div>
+
+    <ul id="item-list"></ul>
+    
+    <a href="../index.html"><button>Home</button></a>
+</body>
+</html>
+
+<script>
+    fetch('http://127.0.0.1:5000/api/income')
+    .then(response => response.json())
+    .then(data => {
+        console.log(data);
+        if (data && data.result && Array.isArray(data.result)) {
+        const itemList = document.getElementById('list_pemasukan');
+        data.result.forEach(item => {
+            const addList = document.createElement('tr');
+            const listTanggal = document.createElement('td');
+            const listIncome = document.createElement('td');
+            const listKeterangan = document.createElement('td');
+            listTanggal.textContent = item.tanggal;
+            listIncome.textContent = item.income;
+            listKeterangan.textContent = item.keterangan;
+            itemList.appendChild(listTanggal);
+            itemList.appendChild(listIncome);
+            itemList.appendChild(listKeterangan);
+            itemList.appendChild(addList);
+            
+        });
+        }
+    })
+
+    fetch('http://127.0.0.1:5000/api/outcome')
+    .then(response => response.json())
+    .then(data => {
+        console.log(data);
+        if (data && data.result && Array.isArray(data.result)) {
+        const itemList = document.getElementById('list_pengeluaran');
+        data.result.forEach(item => {
+            const addList = document.createElement('tr');
+            const listTanggal = document.createElement('td');
+            const listOutcome = document.createElement('td');
+            const listKeterangan = document.createElement('td');
+            listTanggal.textContent = item.tanggal;
+            listOutcome.textContent = item.outcome;
+            listKeterangan.textContent = item.keterangan;
+            itemList.appendChild(listTanggal);
+            itemList.appendChild(listOutcome);
+            itemList.appendChild(listKeterangan);
+            itemList.appendChild(addList);
+        });
+        }
+    })
+
+    const listPengeluaran = document.getElementById('listPengeluaran');
+    const showPengeluaran = document.getElementById('showPengeluaran');
+    const listPemasukan = document.getElementById('listPemasukan');
+
+    showPengeluaran.addEventListener('click', function(){
+        listPengeluaran.style.display = '';
+        listPemasukan.style.display = 'none';
+    });
+
+    showPemasukan.addEventListener('click', function(){
+        listPemasukan.style.display = '';
+        listPengeluaran.style.display = 'none';
+    });
+</script>
