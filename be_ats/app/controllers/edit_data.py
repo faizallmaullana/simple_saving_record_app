@@ -1,12 +1,13 @@
 from flask import request, jsonify
 from flask_restful import Resource
 from app import db
+from sqlalchemy import desc
 
 from app.models.data import Incomes, Outcomes
 
 class Incomes_Resource(Resource):
     def get(self):
-        datas = Incomes.query.all()
+        datas = Incomes.query.order_by(desc(Incomes.created_at)).all()
         result = []
         for data in datas:
             result.append({
@@ -33,7 +34,7 @@ class Incomes_Resource(Resource):
 
 class Outcomes_Resource(Resource):
     def get(self):
-        datas = Outcomes.query.all()
+        datas = Outcomes.query.order_by(desc(Outcomes.created_at)).all()
         result = []
         for data in datas:
             result.append({

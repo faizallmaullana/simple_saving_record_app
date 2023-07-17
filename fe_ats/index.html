@@ -3,22 +3,33 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- <link rel="stylesheet" href="style.css"> -->
+  <link rel="stylesheet" href="style.css">
   <title>Tabungan Mamah</title>
 </head>
 <body>
-  <h1>Saving Money</h1>
+  <div class="judul">
+    <h1>BANK TANJUNG</h1>
+  </div>
 
-  <h2 id="total_income"></h2>
-  <a href="rincian/index.html">Lihat Rincian</a>
-  <br><br>
-  <a href="rincian/add_income.html"><button>Tambah</button></a>
-  <a href="rincian/add_outcome.html"><button>Bayar</button></a>
+  <div class="total_income">
+    <h2>Rp.</h2>
+    <h2 id="total_income"></h2>
+  </div>
+
+  <div class="lihat_rincian">
+    <a href="rincian/index.html">Lihat Rincian</a>
+  </div>
+
+  <div class="tombol" style="margin: 3em 0;">
+    <a href="rincian/add_income.html"><button class="button-54">Tambah</button></a>
+    <a href="rincian/add_outcome.html"><button class="button-54">Kurangi</button></a>
+  </div>
+
 </body>
 </html>
 
 <script>
-  fetch('https://savemoney-flask.engkol.cloud/api/getSumIncome')
+  fetch('http://127.0.0.1:5000/api/getSumIncome')
   .then(response => response.json())
   .then(data => {
       // Process the retrieved data

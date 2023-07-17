@@ -3,15 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../style2.css">
+    <title>Kurang</title>
 </head>
 <body>
+    <div class="judul">
+        <a href="../index.html"><h1>BANK TANJUNG</h1></a>
+    </div>
+
+    <div class="head">
+        <h1>Pengeluaran</h1>
+    </div>
     
     <form class="form">
-        <input name="outcome" type="number" placeholder="Rp.xxx.xxx">
-        <input name="keterangan" type="text" placeholder="keterangan">
+        <div class="input-container">
+            <input class="input" name="outcome" type="number" placeholder="Rp.xxx.xxx">
+            <input class="input" name="keterangan" type="text" placeholder="keterangan">
+        </div>
 
-        <button type="submit" onclick="navigateToHome()">Kirim</button>
+        <div class="tombol">
+            <button class="button-54" type="submit" onclick="navigateToHome()">Kirim</button>
+        </div>
     </form>
 
     <script>
@@ -37,7 +50,7 @@
         });
 
         function navigateToHome() {
-            window.location.href = '../index.html';
+            window.location.href = 'index.html';
         }
     </script>
 

@@ -1,0 +1,235 @@
+body{
+    font-family: monospace;
+    margin: 0;
+    padding: 0;
+}
+
+a{
+    text-decoration: none;
+}
+
+.head {
+    margin: 2em 0;
+    display: flex;
+    justify-content: center;
+}
+
+.jang_ka_tengah{
+    display: flex;
+    justify-content: center;
+}
+
+.judul {
+    background-color: #f0f0f0;
+    padding: 10px 0 10px 0;
+}
+
+.judul h1{
+    color: #333;
+    text-align: center;
+}
+
+.lihat_rincian{
+    color: #333;
+    text-align: center;
+    font-size: 30px;
+}
+
+.list{
+    margin-top: 3em;
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+}
+
+.tombol {
+    display: flex;
+    justify-content: center;
+}
+
+.total_income{
+    display: flex;
+    justify-content: center;
+}
+
+.total_income h2{
+    color: #333;
+    text-align: center;
+    font-size: 100px;
+}
+
+
+/* CSS */
+.button-54 {
+  font-size: 30px;
+  letter-spacing: 2px;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: #000;
+  cursor: pointer;
+  border: 3px solid;
+  padding: 0.25em 0.5em;
+  box-shadow: 1px 1px 0px 0px, 2px 2px 0px 0px, 3px 3px 0px 0px, 4px 4px 0px 0px, 5px 5px 0px 0px;
+  position: relative;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  margin: 1em;
+}
+
+.button-54:active {
+  box-shadow: 0px 0px 0px 0px;
+  top: 5px;
+  left: 5px;
+}
+
+@media (min-width: 768px) {
+  .button-54 {
+    padding: 0.25em 0.75em;
+  }
+}
+
+/* CSS */
+.button-54 {
+  font-size: 30px;
+  letter-spacing: 2px;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: #000;
+  cursor: pointer;
+  border: 3px solid;
+  padding: 0.25em 0.5em;
+  box-shadow: 1px 1px 0px 0px, 2px 2px 0px 0px, 3px 3px 0px 0px, 4px 4px 0px 0px, 5px 5px 0px 0px;
+  position: relative;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  margin: 1em;
+}
+
+.button-54:active {
+  box-shadow: 0px 0px 0px 0px;
+  top: 5px;
+  left: 5px;
+}
+
+@media (min-width: 768px) {
+  .button-54 {
+    padding: 0.25em 0.75em;
+  }
+}
+
+.responsive-table li{
+    border-radius: 3px;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 25px;
+}
+.responsive-table th {
+    background-color: #f0f0f0;
+    padding: 0.25em 7em;
+    font-size: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+.responsive-table tr {
+    background-color: #ffffff;
+    box-shadow: 0px 0px 9px 0px rgba(0,0,0,0.1);
+}
+.responsive-table td {
+    flex-basis: 30%;
+    padding: 1em 0;
+    font-size: 25px;
+}
+
+@media all and (max-width: 767px) {
+    .responsive-table th {
+    display: none;
+    }
+    /* .responsive-table tr{
+    
+    } */
+    li {
+    display: block;
+    }
+    .responsive-table td {
+    
+    flex-basis: 100%;
+    
+    }
+    .responsive-table td {
+    display: flex;
+    padding: 10px 0;
+    &:before {
+        color: #6C7A89;
+        padding-right: 10px;
+        content: attr(data-label);
+        flex-basis: 50%;
+        text-align: right;
+    }
+    }
+}
+
+
+.input-container {
+    display: flex;
+    justify-content: center;
+    margin: 7em 0 3em 0;
+  }
+  
+  .input {
+    padding: 0.5em 5em 0.5em 1em;
+    margin: 0 3em 0 3em;
+    height: 40px;
+    border: 3px solid #333;
+    font-size: 20px;
+    background: transparent;
+    outline: none;
+    box-shadow: 7px 7px 0px 0px #333;
+    transition: all 0.5s;
+  }
+  
+  .input:focus {
+    box-shadow: none;
+    transition: all 0.5s;
+  }
+  
+  .input-container .topline {
+    position: absolute;
+    content: "";
+    background-color: #333;
+    width: 0%;
+    height: 2px;
+    right: 0;
+    top: 0;
+    transition: all 0.5s;
+  }
+  
+  .input-container input[type="text"]:focus ~ .topline {
+    width: 35%;
+    transition: all 0.5s;
+  }
+  
+  .input-container .underline {
+    position: absolute;
+    content: "";
+    background-color: #333;
+    width: 0%;
+    height: 2px;
+    right: 0;
+    bottom: 0;
+    transition: all 0.5s;
+  }
+  
+  .input-container input[type="text"]:focus ~ .underline {
+    width: 100%;
+    transition: all 0.5s;
+  }
+  
+  .input-container input[type="text"]:focus ~ .label {
+    top: -10px;
+    transform: scale(1);
+    transition: all 0.5s;
+  }
