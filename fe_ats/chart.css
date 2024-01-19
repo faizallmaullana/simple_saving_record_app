@@ -1,0 +1,15 @@
+#my-chart {
+	width: 50vw;
+}
+
+.myChart {
+  width: 50vw;
+  max-width: 300px;
+  margin: 0 auto;
+}
+/* #my-chart .pie {
+  ...
+}
+#my-chart .legend {
+  ...
+} */

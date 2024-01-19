@@ -4,15 +4,19 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style2.css">
+  <link rel="stylesheet" href="chart.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/charts.css/dist/charts.min.css">
   <title>Tabungan Mamah</title>
+  <!-- Include Chart.js library -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
   <div class="judul">
-    <h1>BANK TANJUNG</h1>
+    <h1>Finance</h1>
   </div>
 
   <div class="total_income">
-    <h2>Rp.</h2>
     <h2 id="total_income"></h2>
   </div>
 
@@ -21,27 +25,58 @@
   </div>
 
   <div class="tombol" style="margin: 3em 0;">
-    <a href="rincian/add_income.html"><button class="button-54">Tambah</button></a>
-    <a href="rincian/add_outcome.html"><button class="button-54">Kurangi</button></a>
+    <a href="rincian/add_income.html"><button class="button-54">Masuk</button></a>
+    <a href="rincian/add_outcome.html"><button class="button-54">Keluar</button></a>
   </div>
 
+  <section>
+    <div id="my-chart">
+      <canvas id="myChart"></canvas>
+    </div>
+  </section>
+
+  <script>
+    fetch('http://127.0.0.1:5000/api/getSumIncome')
+      .then(response => response.json())
+      .then(data => {
+        // Process the retrieved data
+        console.log(data);
+
+        const total_income = document.getElementById('total_income');
+
+        // Check if data.message exists
+        if (data) {
+          total_income.textContent = 'Rp. ' + data.total;
+
+          // Create a bar chart
+          const ctx = document.getElementById('myChart').getContext('2d');
+          new Chart(ctx, {
+            type: 'bar',
+            data: {
+              labels: ['Income', 'Outcome'],
+              datasets: [{
+                label: 'Finance Overview',
+                backgroundColor: ['#3498db', '#e74c3c'],
+                data: [data.income, data.outcome],
+              }]
+            },
+            options: {
+              scales: {
+                y: {
+                  beginAtZero: true,
+                  ticks: {
+                    callback: function (value) {
+                      return 'Rp. ' + value.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+                    }
+                  }
+                }
+              }
+            }
+          });
+        } else {
+          console.log('No data found.');
+        }
+      });
+  </script>
 </body>
 </html>
-
-<script>
-  fetch('http://127.0.0.1:5000/api/getSumIncome')
-  .then(response => response.json())
-  .then(data => {
-      // Process the retrieved data
-      console.log(data);
-      
-      const total_income = document.getElementById('total_income');
-      
-      // Check if data.message exists
-      if (data) {
-      total_income.textContent = data.total;
-      } else {
-      console.log('No data found.');
-      }
-  })
-</script>

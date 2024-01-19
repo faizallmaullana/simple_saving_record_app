@@ -1,21 +1,18 @@
-from flask import request, jsonify
+from flask import jsonify
 from flask_restful import Resource
 from app import db
-
 from app.models.data import Incomes, Outcomes
 
-# Sisa Bersih
 class GetSumIncomeResource(Resource):
     def get(self):
-        incomess = Incomes.query.all()
-        result1 = 0
-        for amount in incomess:
-            result1 += amount.income
+        total_income = db.session.query(db.func.sum(Incomes.income)).scalar() or 0
+        total_outcome = db.session.query(db.func.sum(Outcomes.outcome)).scalar() or 0
 
-        outcomess = Outcomes.query.all()
-        result2 = 0
-        for amount in outcomess:
-            result2 += amount.outcome
+        net_income = total_income - total_outcome
 
-        result3 = result1 - result2
-        return jsonify(total=result3)
+        return jsonify(
+            total=net_income,
+            income=total_income,
+            outcome=total_outcome
+        )
+            
